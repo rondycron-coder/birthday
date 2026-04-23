@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>С Днем Рождения!</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #2b0000, #000000);
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial Black', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Текст */
+        h1 {
+            font-size: 60px;
+            margin: 10px;
+            opacity: 0;
+            text-shadow: 0 0 20px #ff0055;
+            animation: appear 1s forwards;
+        }
+        .t1 { animation-delay: 0.5s; }
+        .t2 { animation-delay: 2s; }
+        .t3 { animation-delay: 3.5s; }
+
+        @keyframes appear {
+            to { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Падающие розы (теперь на CSS, чтобы точно сработало) */
+        .rose {
+            position: absolute;
+            top: -50px;
+            font-size: 30px;
+            filter: drop-shadow(0 0 5px red);
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        /* Кот и букеты */
+        .bottom-row {
+            position: absolute;
+            bottom: -200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            animation: slideUp 1.5s ease-out 5s forwards;
+            z-index: 10;
+        }
+        .cat { font-size: 120px; }
+        .bouquet { font-size: 80px; }
+
+        @keyframes slideUp {
+            to { bottom: 30px; }
+        }
+
+        /* Код */
+        .code-text {
+            position: absolute;
+            bottom: 5px;
+            font-family: monospace;
+            color: #00ffcc;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeIn 1s 6.5s forwards;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+    <h1 class="t1">С днем рождения!</h1>
+    <h1 class="t2">Бабушка</h1>
+    <h1 class="t3">Галя</h1>
+
+    <div class="bottom-row">
+        <div class="bouquet">💐</div>
+        <div class="cat">🐈‍⬛</div>
+        <div class="bouquet">💐</div>
+    </div>
+
+    <script>
+        for (let i = 0; i < 30; i++) {
+            let rose = document.createElement('div');
+            rose.className = 'rose';
+            rose.innerHTML = '🌹';
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            rose.style.animationDelay = Math.random() * 5 + 's';
+            rose.style.opacity = Math.random();
+            document.body.appendChild(rose);
+        }
+    </script>
+</body>
+</html>
